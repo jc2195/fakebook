@@ -1,0 +1,10 @@
+<%= post.user.name %><br>
+<%= post.content %><br>
+<%= post.likes.all.count %><%= ' likes '%>
+<% like_link = generate_like_link(post) %>
+<%= form_with url: like_link[:link], method: like_link[:link_method] do |f| %>
+  <%= f.hidden_field 'post_id', :value => post.id %>
+  <%= f.hidden_field 'user_id', :value => current_user[:id] %>
+  <%= f.submit 'Like' %>
+<% end %>
+<%= post.comments.all.count %><%= ' comments'%>

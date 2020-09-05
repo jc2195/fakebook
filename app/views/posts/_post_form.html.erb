@@ -1,0 +1,6 @@
+<%= form_with model: @post, url: posts_path, method: 'post' do |f| %>
+  <%= f.label :content, "What's on your mind?" %><br>
+  <%= f.text_area :content %>
+  <%= f.hidden_field 'user_id', :value => current_user[:id] %>
+  <%= f.submit "Post" %>
+<% end %>
