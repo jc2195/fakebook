@@ -1,0 +1,5 @@
+<%= render partial: 'profile' %><br><br><br>
+<%= 'Your posts:'%><br><br>
+<%= render partial: 'posts/posts', locals: { posts: @posts } %><br><br><br>
+<%= 'Friend requests:'%><br><br>
+<%= render partial: 'friend_requests', locals: { friend_requests: @friend_requests } %>

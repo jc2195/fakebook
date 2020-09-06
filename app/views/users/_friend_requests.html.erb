@@ -1,0 +1,8 @@
+<% friend_requests.each do |request| %>
+  <%= request.name %>
+  <%= form_with model: @friendship, url: friendships_path, method: 'post' do |f| %>
+    <%= f.hidden_field 'user_id', :value => current_user[:id] %>
+    <%= f.hidden_field 'friend_id', :value => request.id %>
+    <%= f.submit "Accept" %><br>
+  <% end %>
+<% end %>

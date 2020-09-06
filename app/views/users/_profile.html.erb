@@ -1,0 +1,9 @@
+<div><%= link_to 'Edit Profile', edit_user_profile_path(current_user[:id]), method: 'get' %></div><br>
+<%= 'Your profile:'%><br>
+<%= 'Bio: ' %><%= current_user.profile.bio %><br>
+<%= 'Current town or city: ' %><%= current_user.profile.location %><br>
+<%= 'Workplace: ' %><%= current_user.profile.workplace %><br>
+<%= 'School or university: ' %><%= current_user.profile.school %><br>
+<%= 'Home town: ' %><%= current_user.profile.home_town %><br>
+<%= 'Relationship status: ' %><%= current_user.profile.relationship_status %><br>
+<%= 'Birthday: ' %><%= current_user.profile.birthday.strftime('%-d %B') unless current_user.profile.birthday.nil? %><br>

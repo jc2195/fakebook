@@ -1,1 +1,6 @@
-<%= current_user[:name] %>
+<% @users.each do |user| %>
+  <div>
+    <%= user.name %>
+    <%= render partial: 'request_form', locals: { user: user } %>
+  </div>
+<% end %>
