@@ -66,5 +66,20 @@ Rails.application.configure do
   config.action_mailer.perform_deliveries = true
 
   # Store files locally.
-  config.active_storage.service = :local
+  # config.active_storage.service = :local
+  config.active_storage.service = :amazon
+
+  config.active_record.dump_schema_after_migration = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.smtp_settings = {
+  :user_name => ENV['app183651452@heroku.com'],
+  :password => ENV['ss5dwwju3204'],
+  :domain => 'https://whispering-mesa-77843.herokuapp.com/',
+  :address => 'smtp.sendgrid.net',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
 end

@@ -43,7 +43,7 @@ gem 'gravatar_image_tag'
 
 gem 'mini_magick'
 
-gem 'aws-sdk-s3'
+gem "aws-sdk-s3", require: false
 
 # Use simple_form
 gem 'simple_form'
