@@ -43,8 +43,6 @@ gem 'gravatar_image_tag'
 
 gem 'mini_magick'
 
-gem 'graphicsmagick', '~> 1.0', '>= 1.0.6'
-
 # Use simple_form
 gem 'simple_form'
 
