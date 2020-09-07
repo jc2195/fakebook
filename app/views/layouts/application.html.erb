@@ -9,14 +9,30 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <p class="notice"><%= notice %></p>
-    <p class="alert"><%= alert %></p>
-    <% if user_signed_in? %>
-      <div><%= link_to 'My Account', user_path(current_user[:id]), method: 'get' %></div>
-      <div><%= link_to 'People', users_path, method: 'get' %></div>
-      <div><%= link_to 'Sign Out', destroy_user_session_path, method: 'delete' %></div>
+  <nav class="navbar navbar-expand-sm bg-primary navbar-dark">
+    <a class="navbar-brand pl-4" href=<%= root_path %>><h2>Fakebook</h2></a>
+      <ul class="navbar-nav ml-auto">
+        <% if user_signed_in? %>
+          <li class="nav-item"><%= link_to 'Feed', posts_path, method: 'get', class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'People', users_path, method: 'get', class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'My Account', user_path(current_user[:id]), method: 'get', class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to 'Sign Out', destroy_user_session_path, method: 'delete', class: "nav-link" %></li>
+        <% end %>
+      </ul>
+  </nav>
+
+  <% flash.each do |key, value| %>
+    <% if key == 'notice' %>
+      <% key = 'success' %>
+    <% elsif key == 'alert' %>
+      <% key = 'warning' %>
     <% end %>
-    <%= yield %>
-  </body>
+    <div class="alert alert-<%= key %>"><%= value %></div>
+  <% end %>
+
+  <div class="container pt-3">  
+    <body>
+      <%= yield %>
+    </body>
+  </div>
 </html>

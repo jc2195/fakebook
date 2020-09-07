@@ -1,8 +1,14 @@
 class FriendRequestsController < ApplicationController
   def create
     @friend_request = FriendRequest.create(friend_request_params)
-    flash[:notice] = "Friend request sent!"
+    flash[:success] = "Friend request sent!"
     redirect_to users_path
+  end
+
+  def destroy
+    @friend_request = FriendRequest.find(params[:id])
+    @friend_request.delete
+    redirect_back(fallback_location: root_path)
   end
 
   private

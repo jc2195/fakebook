@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
 
     def index
-        @users = User.where.not(
+        @not_friends = User.where.not(
             :id => (
                 current_user.friends.ids +
                 current_user.received_friend_requests.ids +
@@ -9,11 +9,16 @@ class UsersController < ApplicationController
                 [current_user.id]
             )
         )
+        @friends = User.where(id: current_user.friends.ids)
+
+        @sent_requests = User.where(id: current_user.sent_friend_requests.ids)
+        @friendships = Friendship.where(user_id: current_user.id)
     end
 
     def show
-        @posts = current_user.posts.all
-        @friend_requests = current_user.received_friend_requests.all
+        @user = User.find(params[:id])
+        @posts = @user.posts.all
+        @friend_requests = @user.received_friend_requests.all
     end
 
     private

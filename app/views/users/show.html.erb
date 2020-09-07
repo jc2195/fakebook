@@ -1,5 +1,44 @@
-<%= render partial: 'profile' %><br><br><br>
-<%= 'Your posts:'%><br><br>
-<%= render partial: 'posts/posts', locals: { posts: @posts } %><br><br><br>
-<%= 'Friend requests:'%><br><br>
-<%= render partial: 'friend_requests', locals: { friend_requests: @friend_requests } %>
+<% if current_user.id == @user.id %>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="d-flex flex-column">
+        <div class="mb-2"><h4><%= 'Your profile:'%></h4></div>
+          <%= render partial: 'profile', locals: { user: @user } %>
+        </div>
+      </div>
+    <div class="col-sm-6 display-flex flex-column">
+      <div class="mb-3"><h4><%= 'Your posts:'%></h4></div>
+      <div><%= render partial: 'posts/posts', locals: { posts: @posts } %></div>
+    </div>
+    <div class="col-sm-3 display-flex flex-column">
+      <div class="mb-3"><h4><%= 'Friend requests:'%></h4></div>
+      <div><%= render partial: 'friend_requests', locals: { friend_requests: @friend_requests, user: @user } %><div>
+    </div>
+  </div>
+<% else %>
+  <div class="row">
+    <div class="col-sm-3">
+      <div class="d-flex flex-column">
+        <div class="mb-2"><h4><%= 'Profile:'%></h4></div>
+          <%= render partial: 'profile', locals: { user: @user } %>
+        </div>
+    </div>
+    <div class="col-sm-6 display-flex flex-column">
+      <div class="mb-3"><h4><%= 'Posts:'%></h4></div>
+      <div><% if @user.friends.ids.include?(current_user.id) %>
+        <%= render partial: 'posts/posts', locals: { posts: @posts } %>
+      <% else %>
+        <div class="container-fluid border border-light bg-light rounded pt-3 pb-3 mb-3">
+          <%= 'You need to be friends with this user to see their posts' %>
+        </div>
+      <% end %>
+      </div>
+    </div>
+    <div class="col-sm-3 display-flex flex-column">
+      <div class="mb-3"><h4><%= 'Friends:'%></h4></div>
+      <div>
+        <%= render partial: 'friends', locals: { friends: @user.friends } %>
+      </div>
+    </div>
+  </div>
+<% end %>

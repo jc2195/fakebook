@@ -1,8 +1,22 @@
-<% friend_requests.each do |request| %>
-  <%= request.name %>
-  <%= form_with model: @friendship, url: friendships_path, method: 'post' do |f| %>
-    <%= f.hidden_field 'user_id', :value => current_user[:id] %>
-    <%= f.hidden_field 'friend_id', :value => request.id %>
-    <%= f.submit "Accept" %><br>
+<div class="container-fluid border border-light pt-3 pb-3 bg-light rounded-lg">
+  <% if friend_requests.empty? %>
+    <%= 'No pending requests'%>
+  <% else %>
+    <% friend_requests.each do |request| %>
+      <div class="d-flex flex-row align-items-center mb-1">
+        <div class="mb-2 mt-2 mr-3"><% if request.profile.profile_picture.attached? %>
+          <%= image_tag request.profile.profile_picture.variant(resize: '60x60!'), class: "img-fluid rounded-circle" %>
+        <% else %>
+          <%= image_tag gravatar_image_url(request.email, size: '60'), height: '60', width: '60', class: 'rounded-circle img-fluid' %>
+        <% end %></div>
+        <div class="mr-3"><%= link_to(request.name, user_path(request.id)) %></div>
+        <div class="ml-auto"><%= form_with model: @friendship, url: friendships_path, method: 'post' do |f| %>
+          <%= f.hidden_field 'user_id', :value => current_user[:id] %>
+          <%= f.hidden_field 'friend_id', :value => request.id %>
+          <%= f.submit "Accept" %>
+        <% end %></div>
+        <div><%= button_to("Decline", friend_request_path(@user.friend_requests_as_receiver.find_by(sender_id: request.id)), method: 'delete') %></div>
+      </div>
+    <% end %>
   <% end %>
-<% end %>
+</div>

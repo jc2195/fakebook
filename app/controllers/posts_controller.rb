@@ -7,9 +7,9 @@ class PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     if @post.save
-      flash[:notice] = 'Your post has been created!'
+      flash[:success] = 'Your post has been created!'
     else
-      flash[:notice] = 'Oops! Something went wrong.'
+      flash[:warning] = "Your post can't be blank!"
     end
     redirect_to posts_path
   end

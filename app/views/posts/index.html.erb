@@ -1,2 +1,10 @@
-<%= render partial: 'post_form' %><br><br>
-<%= render partial: 'posts', locals: { posts: @posts } %>
+<div class="row justify-content-center">
+  <div class="col-sm-6">
+    <div class="container-fluid text-primary border border-primary rounded pt-3 pb-3 mb-3">
+      <%= render partial: 'post_form' %>
+    </div>
+    <div class="d-flex flex-column">
+      <%= render partial: 'posts', locals: { posts: @posts } %>
+    </div>
+  </div>
+</div>

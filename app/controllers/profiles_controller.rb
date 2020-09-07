@@ -6,14 +6,12 @@ class ProfilesController < ApplicationController
   def update
     @profile = Profile.find_by(user_id: current_user[:id])
     profile_params[:birthday] = profile_params[:birthday].to_date
-    # unless profile_params[:profile_picture].nil?
     
-    # end
     if @profile.update(profile_params)
-      flash[:notice] = "Your profile has been updated!"
+      flash[:success] = "Your profile has been updated!"
       redirect_to user_path(current_user[:id])
     else
-      flash[:notice] = "Oops! Something went wrong..."
+      flash[:warning] = "Oops! Something went wrong..."
       redirect_to edit_user_profile_path(current_user[:id])
     end
   end
