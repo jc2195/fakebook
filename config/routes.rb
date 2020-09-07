@@ -4,8 +4,12 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   root to: "posts#index"
 
-  resources :users do
-    resource :profile
+  resources :users, only: [:index, :show] do
+    resource :profile, only: [:edit, :update]
   end
-  resources :posts, :likes, :comments, :friend_requests, :friendships
+  resources :posts, only: [:index, :create, :destroy]
+  resources :likes, only: [:create, :destroy]
+  resources :comments, only: [:create, :destroy]
+  resources :friend_requests, only: [:create, :destroy]
+  resources :friendships, only: [:create, :destroy]
 end

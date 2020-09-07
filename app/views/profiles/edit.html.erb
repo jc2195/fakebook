@@ -1,40 +1,42 @@
-<%= form_with model: @profile, url: user_profile_path(current_user[:id]), method: 'put' do |f| %>
-  <% if @profile.profile_picture.attached? %>
-    <%= image_tag @profile.profile_picture.variant(resize: '100x100!'), class: 'rounded-circle' %>
-  <% else %>
-    <%= image_tag gravatar_image_url(current_user.email, size: 100), height: 100, width: 100, class: 'rounded-circle' %>
+<div class="container-fluid">
+  <%= form_with model: @profile, url: user_profile_path(current_user[:id]), method: 'put' do |f| %>
+    <%= f.label :profile_picture, 'Profile picture: '%><br><br>
+    <% if @profile.profile_picture.attached? %>
+      <%= image_tag @profile.profile_picture.variant(resize: '200x200!'), class: 'rounded-circle' %>
+    <% else %>
+      <%= image_tag gravatar_image_url(current_user.email, size: 200), height: 200, width: 200, class: 'rounded-circle' %>
+    <% end %><br><br>
+    <div class="form-group">
+      <%= f.file_field :profile_picture %>
+    </div><br>
+    <div class="form-group">
+      <%= f.label :bio, 'Bio: '%><br>
+      <%= f.text_area :bio %><br>
+    </div><br>
+    <div class="form-group">
+      <%= f.label :location, 'Current town or city: '%><br>
+      <%= f.text_field :location %><br>
+    </div><br>
+    <div class="form-group">
+      <%= f.label :workplace, 'Workplace: '%><br>
+      <%= f.text_field :workplace %><br>
+    </div><br>
+    <div class="form-group">
+      <%= f.label :school, 'School or university: '%><br>
+      <%= f.text_field :school %><br>
+    </div><br>
+    <div class="form-group">
+      <%= f.label :home_town, 'Home town: '%><br>
+      <%= f.text_field :home_town %><br>
+    </div><br>
+    <div class="form-group">
+      <%= f.label :relationship_status, 'Relationship status: '%><br>
+      <%= f.text_field :relationship_status %><br>
+    </div><br>
+    <div class="form-group">
+      <%= f.label :birthday, 'Date of birth (dd/mm/yyyy): '%><br>
+      <%= f.date_field :birthday %><br>
+    </div><br>
+    <div><%= f.submit 'Update' %></div>
   <% end %>
-  <div class="form-group">
-    <%= f.label :profile_picture, 'Profile picture: '%><br>
-    <%= f.file_field :profile_picture %>
-  </div><br>
-  <div class="form-group">
-    <%= f.label :bio, 'Bio: '%><br>
-    <%= f.text_area :bio %><br>
-  </div><br>
-  <div class="form-group">
-    <%= f.label :location, 'Current town or city: '%><br>
-    <%= f.text_field :location %><br>
-  </div><br>
-  <div class="form-group">
-    <%= f.label :workplace, 'Workplace: '%><br>
-    <%= f.text_field :workplace %><br>
-  </div><br>
-  <div class="form-group">
-    <%= f.label :school, 'School or university: '%><br>
-    <%= f.text_field :school %><br>
-  </div><br>
-  <div class="form-group">
-    <%= f.label :home_town, 'Home town: '%><br>
-    <%= f.text_field :home_town %><br>
-  </div><br>
-  <div class="form-group">
-    <%= f.label :relationship_status, 'Relationship status: '%><br>
-    <%= f.text_field :relationship_status %><br>
-  </div><br>
-  <div class="form-group">
-    <%= f.label :birthday, 'Date of birth (dd/mm/yyyy): '%><br>
-    <%= f.date_field :birthday %><br>
-  </div><br>
-  <div><%= f.submit 'Update' %></div>
-<% end %>
+</div>

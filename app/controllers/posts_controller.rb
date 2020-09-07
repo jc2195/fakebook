@@ -14,9 +14,17 @@ class PostsController < ApplicationController
     redirect_to posts_path
   end
 
+  def destroy
+    @post = Post.find(params[:id])
+    if @post.delete
+      flash[:success] = "Post deleted!"
+    end
+    redirect_back(fallback_location: root_path)
+  end
+
   private
 
   def post_params
-    params.permit(:user_id, :content)
+    params.permit(:user_id, :content, :image)
   end
 end

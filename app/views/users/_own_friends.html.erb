@@ -1,9 +1,12 @@
-<div class="container-fluid bg-light pt-2 pb-2">
-  <% if friends.empty? %>
+
+<% if friends.empty? %>
+  <div class="container-fluid bg-light pt-2 pb-2 mb-2 rounded-lg">
     <%= 'No friends' %>
-  <% else %>
-    <% @friends.each do |user| %>
-      <div class="d-flex flex-row align-items-center mb-1">
+  </div>
+<% else %>
+  <% @friends.each do |user| %>
+    <div class="container-fluid bg-light pt-2 pb-2 mb-2 rounded-lg">
+      <div class="d-flex flex-row align-items-center">
         <div class="mb-2 mt-2 mr-3"><% if user.profile.profile_picture.attached? %>
           <%= image_tag user.profile.profile_picture.variant(resize: '60x60!'), class: "img-fluid rounded-circle" %>
         <% else %>
@@ -12,6 +15,6 @@
         <div><%= link_to(user.name, user_path(user.id)) %></div>
         <div><%= button_to("Remove Friend", friendship_path(@friendships.find_by(user_id: current_user.id, friend_id: user.id)), method: "delete") %></div>
       </div>
-    <% end %>
+    </div>
   <% end %>
-</div>
+<% end %>

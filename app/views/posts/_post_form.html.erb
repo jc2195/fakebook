@@ -1,8 +1,14 @@
 <div class="container-fluid">
   <%= form_with model: @post, url: posts_path, method: 'post' do |f| %>
-    <div class="form-group"><%= f.label :content, "What's on your mind?" %>
+    <div class=""><%= f.label :content, "What's on your mind?" %>
     <%= f.text_area :content, class: "form-control" %></div>
     <%= f.hidden_field 'user_id', :value => current_user[:id] %>
-    <%= f.submit "Post" %>
+    <div class="d-flex flex-row">
+    <div class="mr-auto"><%= f.label :image, 'Attach an image: ', class: "ml-auto"%><br>
+
+      <%= f.file_field :image %>
+      </div>
+    <div><%= f.submit "Post"%></div>
+    </div>
   <% end %>
 </div>

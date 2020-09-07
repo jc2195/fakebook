@@ -1,8 +1,11 @@
-<div class="container-fluid border border-light bg-light rounded pt-3 pb-3 mb-3">
+
   <% if posts.empty? %>
-    <%= 'Nothing to see here' %>
+    <div class="container-fluid border border-light bg-light rounded pt-3 pb-3 mb-3">
+      <%= 'Nothing to see here' %>
+    </div>
   <% else %>
     <% posts.all.each do |post| %>
+    <div class="container-fluid border border-light bg-light rounded pt-3 pb-3 mb-3">
       <%= render partial: 'posts/post', locals: { post: post } %>
       <%= render partial: 'posts/comment_form', locals: { post: post } %>
       <div class="pt-3">
@@ -12,6 +15,6 @@
           </div>
         <% end %>
       </div>
+    </div>
     <% end %>
   <% end %>
-</div>

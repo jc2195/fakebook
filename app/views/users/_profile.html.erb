@@ -1,8 +1,8 @@
 <div class="container-fluid border border-light bg-light pt-3 pb-3 rounded-lg">
   <div class="mb-3"><% if user.profile.profile_picture.attached? %>
-    <%= image_tag user.profile.profile_picture.variant(resize: '400x400!'), class: "img-fluid" %>
+    <%= image_tag user.profile.profile_picture.variant(resize: '400x400!'), class: "img-fluid rounded-lg" %>
   <% else %>
-    <%= image_tag gravatar_image_url(user.email, size: '100%'), height: 'auto', width: '100%' %>
+    <%= image_tag gravatar_image_url(user.email, size: '100%'), height: 'auto', width: '100%', class: "rounded-lg" %>
   <% end %></div>
   <div><div class="font-weight-bold"><%= 'Name: ' %></div><%= user.name %></div><br>
   <div><div class="font-weight-bold"><%= 'Bio: ' %></div><%= user.profile.bio %></div><br>
