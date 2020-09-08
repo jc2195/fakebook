@@ -16,7 +16,7 @@ The spec for this app is as follows:
 12. Other user's profiles can be viewed by clicking on their name - the pages contain their Profile information, photo, friends and posts (but only if the user is friends with the logged in user).
 13. The People page contains a list of the logged in users's friends, all of the people who the user is not friends with (with buttons to send a friend request), and the users which have been sent a friend request by the logged in user but have not accepted it yet.
 14. Users can log in/sign up with their own Facebook account using the Facebook API.
-15. Users get sent a welcome email after signing up.
+15. Users get sent a welcome email after signing up. (This had to be disabled in the live heroku version.)
 
 The live version of the site can be found here: https://whispering-mesa-77843.herokuapp.com/
 
