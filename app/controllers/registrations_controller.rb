@@ -6,7 +6,7 @@ class RegistrationsController < Devise::RegistrationsController
   def create 
     super
     Profile.create(user_id: current_user[:id])
-    UserMailer.with(user: current_user).welcome_email.deliver_now
+    # UserMailer.with(user: current_user).welcome_email.deliver_now
   end 
 
   def update
